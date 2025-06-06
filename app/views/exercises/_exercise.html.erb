@@ -1,0 +1,6 @@
+<div class="exercise">
+  <h3><%= exercise.name %></h3>
+  <p>Подходы: <%= exercise.sets %></p>
+  <p>Повторения: <%= exercise.reps %></p>
+  <%= link_to "Удалить", [exercise.workout, exercise], method: :delete, data: { turbo_method: :delete } %>
+</div>

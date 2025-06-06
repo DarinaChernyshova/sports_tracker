@@ -1,0 +1,10 @@
+<h1>Создать тренировку</h1>
+<%= form_with model: @workout do |f| %>
+  <%= f.label :title, "Название" %>
+  <%= f.text_field :title %>
+
+  <%= f.label :description, "Описание" %>
+  <%= f.text_area :description %>
+
+  <%= f.submit "Создать" %>
+<% end %>

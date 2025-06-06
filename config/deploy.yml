@@ -1,0 +1,86 @@
+# Name of your application. Used to uniquely configure containers.
+service: sports_tracker
+
+# Name of the container image.
+image: your-user/sports_tracker
+
+# Deploy to these servers.
+servers:
+  web:
+    - 192.168.0.1
+  job:
+    hosts:
+      - 192.168.0.1
+    cmd: bin/rails jobs:work
+
+# Enable SSL
+proxy:
+  ssl: true
+  host: app.example.com
+
+# Credentials for your image host.
+registry:
+  username: your-user
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+# Environment variables
+env:
+  secret:
+    - RAILS_MASTER_KEY
+    - DB_PASSWORD
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
+    RAILS_ENV: production
+    DB_HOST: 192.168.0.1  # Same as web server
+    DB_PORT: 5432
+    DB_NAME: sports_tracker_production
+    DB_USER: sports_tracker
+    DB_POOL: 5
+    REDIS_URL: redis://192.168.0.1:6379/1
+
+# Command aliases
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole"
+
+# Volumes
+volumes:
+  - "sports_tracker_storage:/rails/storage"
+
+# Asset handling
+asset_path: /rails/public/assets
+
+# Builder configuration
+builder:
+  arch: amd64
+
+# Accessory services
+accessories:
+  db:
+    image: postgres:16
+    host: 192.168.0.1  # Same as web server
+    port: "5432:5432"
+    env:
+      clear:
+        POSTGRES_DB: sports_tracker_production
+        POSTGRES_USER: sports_tracker
+      secret:
+        - POSTGRES_PASSWORD
+    directories:
+      - pg_data:/var/lib/postgresql/data
+    options:
+      healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U sports_tracker"]
+        interval: 5s
+        timeout: 5s
+        retries: 5
+
+  redis:
+    image: redis:7.2
+    host: 192.168.0.1
+    port: "6379:6379"
+    directories:
+      - redis_data:/data

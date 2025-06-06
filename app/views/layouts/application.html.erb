@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for(:title) || "Sports Tracker" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <link rel="icon" href="/Sports1.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" href="/Sports1.jpg">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header class="app-header">
+      <div class="header-content">
+        <div class="header-left">
+          <%= image_tag "/Sports_new.png", class: "app-logo", alt: "Логотип Sports Tracker" %>
+          <h1 class="app-title">Мои тренировки</h1>
+        </div>
+        
+        <div class="header-right">
+          <% if user_signed_in? %>
+            <%= button_to "Выход", destroy_user_session_path, method: :delete, form: { class: "logout-form" }, class: "logout-button" %>
+          <% else %>
+            <%= link_to "Войти", new_user_session_path, class: "login-button" %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <%= yield %>
+    </main>
+  </body>
+</html>

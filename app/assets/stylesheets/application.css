@@ -1,0 +1,109 @@
+/* Header styles */
+.app-header {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 1rem;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .app-logo {
+    width: 50px;
+    height: auto;
+  }
+  
+  .app-title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  /* Button styles */
+  .login-button {
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background-color: #28a745;
+  }
+  
+  .login-button:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+  }
+  
+  /* Logout form styles */
+  .logout-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .logout-button {
+    padding: 0.5rem 1rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background-color: #dc3545;
+  }
+  
+  .logout-button:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+  }
+  
+  /* Main content */
+  .main-content {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    
+    .header-right {
+      width: 100%;
+      justify-content: flex-end;
+    }
+    
+    .app-title {
+      font-size: 1.2rem;
+    }
+  }

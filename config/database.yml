@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: postgres  
+  password: postgres               
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: sports_tracker_development  # Имя БД для разработки
+
+test:
+  <<: *default
+  database: sports_tracker_test         # Имя БД для тестов
+
+production:
+  <<: *default
+  database: sports_tracker_production   # Имя БД для продакшена
