@@ -17,7 +17,7 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'redis', '~> 5.0'
+gem 'redis', '~> 5.4'
 gem 'redis-namespace'
 gem 'sidekiq' 
 
